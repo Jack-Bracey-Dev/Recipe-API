@@ -50,3 +50,9 @@ ALTER TABLE ingredient
     ADD CONSTRAINT fk_measurement FOREIGN KEY (measurement_id) REFERENCES measurement (id);
 ALTER TABLE ingredient
     ADD CONSTRAINT fk_recipe FOREIGN KEY (recipe_id) REFERENCES recipe (id);
+
+CREATE TABLE IF NOT EXISTS user_details(
+    id serial PRIMARY KEY,
+    email varchar(100) NOT NULL,
+    password varchar(150) NOT NULL
+);
