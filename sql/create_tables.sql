@@ -50,3 +50,11 @@ ALTER TABLE ingredient
     ADD CONSTRAINT fk_measurement FOREIGN KEY (measurement_id) REFERENCES measurement (id);
 ALTER TABLE ingredient
     ADD CONSTRAINT fk_recipe FOREIGN KEY (recipe_id) REFERENCES recipe (id);
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE IF NOT EXISTS api_keys (
+    apikey uuid DEFAULT uuid_generate_v4(),
+    role varchar(20) NOT NULL,
+    PRIMARY KEY(apikey)
+);
