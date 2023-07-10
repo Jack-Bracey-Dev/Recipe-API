@@ -4,6 +4,7 @@ services:
     image: postgres:15.2
     restart: always
     environment:
+      - POSTGRES_DB=recipe_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     logging:
@@ -14,3 +15,4 @@ services:
       - '5438:5432'
     volumes:
       - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
+      - ./sql/fill_permissions.sql:/docker-entrypoint-initdb.d/fill_permissions.sql
