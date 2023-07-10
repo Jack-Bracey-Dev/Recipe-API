@@ -7,10 +7,11 @@ import com.jackbracey.recipeapi.Helpers.Response;
 import com.jackbracey.recipeapi.Services.MeasurementService;
 import com.jackbracey.recipeapi.Services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("recipe")
+@RequestMapping("api/recipe")
 @SuppressWarnings("unused")
 public class RecipeController {
 
@@ -20,6 +21,7 @@ public class RecipeController {
     @Autowired
     private MeasurementService measurementService;
 
+    @PreAuthorize("hasAuthority('GET_RECIPE')")
     @GetMapping(consumes = "application/json", produces = "application/json")
     public Response getRecipesByFilter(@RequestBody RecipeFilter filter) {
         if (filter == null)
@@ -33,12 +35,14 @@ public class RecipeController {
     }
 
     @PostMapping(consumes = "application/json", produces = "application/json")
+    @PreAuthorize("hasAuthority('CREATE_RECIPE')")
     public Response create(@RequestBody Recipe recipe) {
         RecipeEntity recipeEntity = recipeService.save(recipe.convertToEntity(measurementService));
         return Response.Success(recipeEntity.convertToPOJO());
     }
 
     @DeleteMapping(produces = "application/json")
+    @PreAuthorize("hasAuthority('DELETE_RECIPE')")
     public Response delete(@RequestParam Integer recipeId) {
         if (recipeId == null)
             return new Response(null, 400, "Missing recipeId parameter");
