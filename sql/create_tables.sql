@@ -73,3 +73,9 @@ CREATE TABLE IF NOT EXISTS api_key_permissions (
     FOREIGN KEY (apikey_id) REFERENCES api_keys (id),
     FOREIGN KEY (permission_id) REFERENCES permissions (id)
 );
+
+CREATE TABLE IF NOT EXISTS feature_flag (
+    name varchar(200) PRIMARY KEY,
+    value varchar(200) NOT NULL,
+    data_type smallint NOT NULL
+);

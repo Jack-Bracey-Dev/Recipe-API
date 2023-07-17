@@ -1,9 +1,11 @@
 package com.jackbracey.recipeapi.Controllers;
 
 import com.jackbracey.recipeapi.Entities.RecipeEntity;
+import com.jackbracey.recipeapi.Helpers.FeatureFlags;
 import com.jackbracey.recipeapi.POJOs.Recipe;
 import com.jackbracey.recipeapi.POJOs.RecipeFilter;
 import com.jackbracey.recipeapi.Helpers.Response;
+import com.jackbracey.recipeapi.Services.FeatureFlagService;
 import com.jackbracey.recipeapi.Services.MeasurementService;
 import com.jackbracey.recipeapi.Services.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,9 +23,15 @@ public class RecipeController {
     @Autowired
     private MeasurementService measurementService;
 
+    @Autowired
+    private FeatureFlagService featureFlagService;
+
     @PreAuthorize("hasAuthority('GET_RECIPE')")
     @GetMapping(consumes = "application/json", produces = "application/json")
-    public Response getRecipesByFilter(@RequestBody RecipeFilter filter) {
+    public Response getRecipesByFilter(@RequestBody RecipeFilter filter) throws Exception {
+        if (!featureFlagService.getBoolean(FeatureFlags.ENABLE_GET_RECIPE))
+            return Response.EndpointDisabled();
+
         if (filter == null)
             return new Response(null, 400, "Missing request filter body");
 
