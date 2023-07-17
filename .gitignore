@@ -43,3 +43,4 @@ secrets.yml
 postgres-data
 .jpb
 .mvn
+/src/main/resources/output.json
