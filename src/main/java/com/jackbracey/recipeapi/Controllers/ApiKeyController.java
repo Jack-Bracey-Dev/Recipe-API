@@ -3,7 +3,6 @@ package com.jackbracey.recipeapi.Controllers;
 import com.jackbracey.recipeapi.Entities.ApiKeyEntity;
 import com.jackbracey.recipeapi.Helpers.Response;
 import com.jackbracey.recipeapi.POJOs.GenericKeyType;
-import com.jackbracey.recipeapi.Services.ApiKeyPermissionService;
 import com.jackbracey.recipeapi.Services.ApiKeyService;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.beans.factory.annotation.Autowired;

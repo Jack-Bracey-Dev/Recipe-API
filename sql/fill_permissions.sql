@@ -12,7 +12,10 @@ VALUES
 ('ASSIGN_PERMISSION'),
 ('GET_API_KEY'),
 ('CREATE_API_KEY'),
-('REMOVE_API_KEY');
+('REMOVE_API_KEY'),
+('GET_FEATURE_FLAG'),
+('CREATE_FEATURE_FLAG'),
+('DELETE_FEATURE_FLAG');
 
 INSERT INTO public.api_keys
 (api_key, "type", requests)
@@ -32,4 +35,7 @@ values
 (1, 9),
 (1, 10),
 (1, 11),
-(1, 12);
+(1, 12),
+(1, 13),
+(1, 14),
+(1, 15);

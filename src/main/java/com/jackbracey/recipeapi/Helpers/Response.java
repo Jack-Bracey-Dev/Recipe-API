@@ -17,6 +17,10 @@ public class Response {
     public Response() {
     }
 
+    public static Response EndpointDisabled() {
+        return new Response(null, 410, "Apologies, this endpoint has been disabled");
+    }
+
     public Object getObject() {
         return object;
     }
