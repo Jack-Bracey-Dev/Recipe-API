@@ -1,0 +1,330 @@
+{
+	"info": {
+		"_postman_id": "7718b304-c778-4644-b25c-e185276acc71",
+		"name": "Recipe API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28630260"
+	},
+	"item": [
+		{
+			"name": "Recipes",
+			"item": [
+				{
+					"name": "Query Recipes",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": {
+								"value": "{{api_key}}",
+								"key": "X-API-KEY"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pageNumber\": 1,\r\n    \"pageSize\": 50,\r\n    \"id\": null,\r\n    \"ids\": null,\r\n    \"name\": \"\",\r\n    \"source\": \"\",\r\n    \"url\": \"\",\r\n    \"prepTimeMin\": null,\r\n    \"prepTimeMax\": null,\r\n    \"cookTimeMin\": null,\r\n    \"cookTimeMax\": null,\r\n    \"difficulty\": \"\",\r\n    \"servesMin\": null,\r\n    \"servesMax\": null,\r\n    \"description\": \"\",\r\n    \"caloriesMin\": null,\r\n    \"caloriesMax\": null,\r\n    \"fatMin\": null,\r\n    \"fatMax\": null,\r\n    \"saturatesMin\": null,\r\n    \"saturatesMax\": null,\r\n    \"carbsMin\": null,\r\n    \"carbsMax\": null,\r\n    \"sugarsMin\": null,\r\n    \"sugarsMax\": null,\r\n    \"fibreMin\": null,\r\n    \"fibreMax\": null,\r\n    \"proteinMin\": null,\r\n    \"proteinMax\": null,\r\n    \"saltMin\": null,\r\n    \"saltMax\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/api/recipe"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Recipe",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"\",\r\n    \"source\": \"\",\r\n    \"url\": \"\",\r\n    \"prepTime\": \"\",\r\n    \"cookTime\": \"\",\r\n    \"difficulty\": \"\",\r\n    \"serves\": \"\",\r\n    \"description\": \"\",\r\n    \"calories\": \"\",\r\n    \"fat\": \"\",\r\n    \"saturates\": \"\",\r\n    \"carbs\": \"\",\r\n    \"sugars\": \"\",\r\n    \"fibre\": \"\",\r\n    \"protein\": \"\",\r\n    \"salt\": \"\",\r\n    \"ingredients\": [\r\n        {\r\n            \"name\": \"Water\",\r\n            \"amount\": 12.5,\r\n            \"measurementName\": \"Litres\"\r\n        },\r\n        {\r\n            \"name\": \"Rice\",\r\n            \"amount\": 2,\r\n            \"measurementName\": \"Cups\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/recipe"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Recipe",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/recipe?recipeId=2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"recipe"
+							],
+							"query": [
+								{
+									"key": "recipeId",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Measurements",
+			"item": [
+				{
+					"name": "Get All Conversions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/measurement-conversion"
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Measurements",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/measurement"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Keys",
+			"item": [
+				{
+					"name": "Get Key",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": {
+								"value": "{{api_key}}",
+								"key": "X-API-KEY"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/keys?apiKey=",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"keys"
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create key",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": {
+								"value": "{{api_key}}",
+								"key": "X-API-KEY"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/keys?type=USER",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"keys"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "USER",
+									"description": "TRIAL_USER / USER / ADMIN"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Key",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Permissions",
+			"item": [
+				{
+					"name": "Create Permissions",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    {\r\n        \"name\": \"GET_RECIPE\"\r\n    },\r\n    {\r\n        \"name\": \"CREATE_RECIPE\"\r\n    },\r\n    {\r\n        \"name\": \"EDIT_RECIPE\"\r\n    },\r\n    {\r\n        \"name\": \"CREATE_PERMISSION\"\r\n    },\r\n    {\r\n        \"name\": \"REMOVE_PERMISSION\"\r\n    },\r\n    {\r\n        \"name\": \"ASSIGN_PERMISSION\"\r\n    },\r\n    {\r\n        \"name\": \"CREATE_API_KEY\"\r\n    },\r\n    {\r\n        \"name\": \"REMOVE_API_KEY\"\r\n    }\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/api/permission"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Permissions",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": {
+								"value": "{{api_key}}",
+								"key": "X-API-KEY"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "{{url}}/api/permission"
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Permissions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": {
+								"value": "{{api_key}}",
+								"key": "X-API-KEY"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    \"\"\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/permission/assign?apiKey",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"permission",
+								"assign"
+							],
+							"query": [
+								{
+									"key": "apiKey",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Feature Flags",
+			"item": [
+				{
+					"name": "Get flag",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": {
+								"value": "{{api_key}}",
+								"key": "X-API-KEY"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/feature-flag?flag=ABC",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"feature-flag"
+							],
+							"query": [
+								{
+									"key": "flag",
+									"value": "ABC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create / update flag",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": {
+								"value": "{{api_key}}",
+								"key": "X-API-KEY"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"ENABLE_GET_RECIPE\",\r\n    \"value\": \"True\",\r\n    \"data_type\": \"BOOLEAN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{url}}/api/feature-flag"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
