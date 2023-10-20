@@ -6,26 +6,27 @@ import java.util.List;
 public enum GenericKeyType {
 
     TRIAL_USER(List.of(
-            new Permission("GET_RECIPE"),
-            new Permission("GET_MEASUREMENT")
+            new Permission(Permissions.GET_RECIPE.name()),
+            new Permission(Permissions.GET_MEASUREMENT.name())
     ), 500L, null),
 
     USER(List.of(
-            new Permission("GET_RECIPE"),
-            new Permission("GET_MEASUREMENT")
+            new Permission(Permissions.GET_RECIPE.name()),
+            new Permission(Permissions.GET_MEASUREMENT.name())
     ),null, null),
 
     ADMIN(List.of(
-            new Permission("CREATE_RECIPE"),
-            new Permission("EDIT_RECIPE"),
-            new Permission("DELETE_RECIPE"),
-            new Permission("GET_PERMISSION"),
-            new Permission("CREATE_PERMISSION"),
-            new Permission("REMOVE_PERMISSION"),
-            new Permission("ASSIGN_PERMISSION"),
-            new Permission("GET_API_KEY"),
-            new Permission("CREATE_API_KEY"),
-            new Permission("REMOVE_API_KEY")
+            new Permission(Permissions.CREATE_RECIPE.name()),
+            new Permission(Permissions.EDIT_RECIPE.name()),
+            new Permission(Permissions.DELETE_RECIPE.name()),
+            new Permission(Permissions.GET_PERMISSION.name()),
+            new Permission(Permissions.CREATE_PERMISSION.name()),
+            new Permission(Permissions.REMOVE_PERMISSION.name()),
+            new Permission(Permissions.ASSIGN_PERMISSION.name()),
+            new Permission(Permissions.GET_API_KEY.name()),
+            new Permission(Permissions.CREATE_API_KEY.name()),
+            new Permission(Permissions.REMOVE_API_KEY.name()),
+            new Permission(Permissions.DEV_TEST_ACCOUNT.name())
     ), null, USER);
 
     private final List<Permission> defaultPermissions;

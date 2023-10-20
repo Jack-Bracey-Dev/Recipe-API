@@ -74,7 +74,8 @@ public class RecipeEntity {
                         @Nullable Integer sugars,
                         @Nullable Integer fibre,
                         @Nullable Integer protein,
-                        @Nullable Integer salt) {
+                        @Nullable Integer salt,
+                        @Nullable List<IngredientEntity> ingredients) {
         this.name = name;
         this.source = source;
         this.url = url;
@@ -91,6 +92,7 @@ public class RecipeEntity {
         this.fibre = fibre;
         this.protein = protein;
         this.salt = salt;
+        this.ingredients = ingredients;
     }
 
     public RecipeEntity() {

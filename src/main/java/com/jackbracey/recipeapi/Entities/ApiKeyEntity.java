@@ -6,6 +6,7 @@ import com.jackbracey.recipeapi.Entities.Permissions.PermissionEntity;
 import com.jackbracey.recipeapi.POJOs.GenericKeyType;
 import com.jackbracey.recipeapi.POJOs.Permission;
 import com.jackbracey.recipeapi.Services.ApiKeyPermissionService;
+import com.jackbracey.recipeapi.Services.ApiKeyService;
 import com.jackbracey.recipeapi.Services.PermissionService;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
@@ -113,6 +114,19 @@ public class ApiKeyEntity {
 
     public void setPermissions(List<ApiKeyPermissionEntity> permissions) {
         this.permissions = permissions;
+    }
+
+    public void setPermissions(ApiKeyPermissionService apiKeyPermissionService,
+                               PermissionService permissionService,
+                               List<Permission> permissions) {
+        List<ApiKeyPermissionEntity> permissionEntities = new ArrayList<>();
+        for (Permission permission : permissions) {
+            PermissionEntity permissionEntity = permissionService.findPermission(permission);
+            ApiKeyPermissionEntity apiKeyPermissionEntity = apiKeyPermissionService
+                    .createApiKeyPermissionEntry(this.id, permissionEntity.getId());
+            permissionEntities.add(apiKeyPermissionEntity);
+        }
+        setPermissions(permissionEntities);
     }
 
     public String getType() {

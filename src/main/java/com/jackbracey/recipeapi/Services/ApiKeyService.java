@@ -48,4 +48,13 @@ public class ApiKeyService {
     public void deleteApiKey(ApiKeyEntity entity) {
         // TODO
     }
+
+    public ApiKeyEntity getFirstAdmin() {
+        return apiKeyRepository.findFirstAdminAccount().orElse(null);
+    }
+
+    public ApiKeyEntity save(ApiKeyEntity entity) {
+        return apiKeyRepository.save(entity);
+    }
+
 }

@@ -34,6 +34,13 @@ public class IngredientEntity {
         this.measurement = measurement;
     }
 
+    public IngredientEntity(String name, BigDecimal amount, RecipeEntity recipe, MeasurementEntity measurement) {
+        this.name = name;
+        this.amount = amount;
+        this.recipe = recipe;
+        this.measurement = measurement;
+    }
+
     public IngredientEntity() {
     }
 

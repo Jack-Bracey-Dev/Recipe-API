@@ -1,6 +1,8 @@
 package com.jackbracey.recipeapi.Services;
 
 import com.jackbracey.recipeapi.Entities.Permissions.PermissionEntity;
+import com.jackbracey.recipeapi.POJOs.GenericKeyType;
+import com.jackbracey.recipeapi.POJOs.Permission;
 import com.jackbracey.recipeapi.Repositories.PermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,10 @@ public class PermissionService {
 
     public PermissionEntity findPermission(String name) {
         return permissionRepository.findByName(name);
+    }
+
+    public PermissionEntity findPermission(Permission permission) {
+        return findPermission(permission.getName());
     }
 
 }

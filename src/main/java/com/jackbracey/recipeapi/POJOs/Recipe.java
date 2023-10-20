@@ -83,6 +83,42 @@ public class Recipe {
         this.ingredients = ingredients;
     }
 
+    public Recipe(String name,
+                  String source,
+                  String url,
+                  Integer prepTime,
+                  Integer cookTime,
+                  String difficulty,
+                  Integer serves,
+                  String description,
+                  Integer calories,
+                  Integer fat,
+                  Integer saturates,
+                  Integer carbs,
+                  Integer sugars,
+                  Integer fibre,
+                  Integer protein,
+                  Integer salt,
+                  List<Ingredient> ingredients) {
+        this.name = name;
+        this.source = source;
+        this.url = url;
+        this.prepTime = prepTime;
+        this.cookTime = cookTime;
+        this.difficulty = difficulty;
+        this.serves = serves;
+        this.description = description;
+        this.calories = calories;
+        this.fat = fat;
+        this.saturates = saturates;
+        this.carbs = carbs;
+        this.sugars = sugars;
+        this.fibre = fibre;
+        this.protein = protein;
+        this.salt = salt;
+        this.ingredients = ingredients;
+    }
+
     public static List<RecipeEntity> convertToEntities(List<Recipe> recipes,
                                                        MeasurementService measurementService) {
         List<RecipeEntity> entities = new ArrayList<>();
