@@ -79,3 +79,22 @@ CREATE TABLE IF NOT EXISTS feature_flag (
     value varchar(200) NOT NULL,
     data_type smallint NOT NULL
 );
+
+CREATE TABLE IF NOT EXISTS recipe_overview (
+    id serial PRIMARY KEY,
+    name varchar(100),
+    url varchar(200),
+    post_format varchar(50),
+    external_id varchar(40),
+    image_url varchar(300),
+    source varchar(100),
+    source_id varchar(100),
+    misc_details varchar(300),
+    scraped BOOLEAN
+);
+
+CREATE TABLE IF NOT EXISTS scraping_info (
+    id varchar(100) PRIMARY KEY,
+    number INT,
+    text varchar(300)
+)
