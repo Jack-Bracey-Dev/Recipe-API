@@ -1,9 +1,7 @@
 package com.jackbracey.recipeapi.Helpers;
 
-import com.jackbracey.recipeapi.Entities.IngredientEntity;
+import com.jackbracey.recipeapi.Entities.*;
 import com.jackbracey.recipeapi.Entities.MeasurementConversion.MeasurementConversionEntity;
-import com.jackbracey.recipeapi.Entities.MeasurementEntity;
-import com.jackbracey.recipeapi.Entities.RecipeEntity;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,17 +46,19 @@ public class HibernateUtil {
     private Configuration registerEntityClasses() {
         Configuration conf = new Configuration()
                 .addProperties(getProperties());
-        conf.addAnnotatedClass(RecipeEntity.class);
+        conf.addAnnotatedClass(MeasurementConversionEntity.class);
         conf.addAnnotatedClass(IngredientEntity.class);
         conf.addAnnotatedClass(MeasurementEntity.class);
-        conf.addAnnotatedClass(MeasurementConversionEntity.class);
+        conf.addAnnotatedClass(RecipeEntity.class);
+        conf.addAnnotatedClass(RecipeOverviewEntity.class);
+        conf.addAnnotatedClass(StepEntity.class);
         return conf;
     }
 
     private Properties getProperties() {
         Properties prop = new Properties();
         prop.setProperty("hibernate.connection.url", this.datasourceUrl);
-        prop.setProperty("dialect", this.datasourceDialect);
+        prop.setProperty("hibernate.dialect", this.datasourceDialect);
         prop.setProperty("hibernate.connection.username", this.datasourceUsername);
         prop.setProperty("hibernate.connection.password", this.datasourcePassword);
         prop.setProperty("hibernate.connection.driver_class", this.datasourceDriver);

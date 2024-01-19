@@ -3,6 +3,7 @@ package com.jackbracey.recipeapi.POJOs;
 import com.jackbracey.recipeapi.Entities.IngredientEntity;
 import com.jackbracey.recipeapi.Entities.MeasurementEntity;
 import com.jackbracey.recipeapi.Services.MeasurementService;
+import jakarta.annotation.Nullable;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -13,25 +14,37 @@ public class Ingredient {
 
     private Integer id;
 
-    private String name;
+    private String description;
 
-    private BigDecimal amount;
+    private Double amount;
 
     private String measurementName;
 
     private Measurement measurement;
 
-    public Ingredient(Integer id, String name, BigDecimal amount, Measurement measurement) {
+    private String header;
+
+    public Ingredient(Integer id,
+                      String description,
+                      Double amount,
+                      @Nullable Measurement measurement,
+                      String header) {
         this.id = id;
-        this.name = name;
+        this.description = description;
         this.amount = amount;
         this.measurement = measurement;
-        this.measurementName = measurement.getName();
+        this.measurementName = measurement != null ? measurement.getName() : "";
+        this.header = header;
     }
 
-    public Ingredient(MeasurementService measurementService, Integer id, String name, BigDecimal amount, String measurementName) {
+    // TODO: Implement grabbing the measurement
+    public Ingredient(MeasurementService measurementService,
+                      Integer id,
+                      String description,
+                      Double amount,
+                      String measurementName) {
         this.id = id;
-        this.name = name;
+        this.description = description;
         this.amount = amount;
         this.measurementName = measurementName;
         this.measurement = null;
@@ -48,19 +61,19 @@ public class Ingredient {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public BigDecimal getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
@@ -80,6 +93,14 @@ public class Ingredient {
         this.measurementName = measurementName;
     }
 
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
     public static List<IngredientEntity> convertToEntities(List<Ingredient> ingredients,
                                                            MeasurementService measurementService) {
         List<IngredientEntity> ingredientEntities = new ArrayList<>();
@@ -92,15 +113,13 @@ public class Ingredient {
         IngredientEntity ingredientEntity = new IngredientEntity();
         if (this.id != null)
             ingredientEntity.setId(this.id);
-        ingredientEntity.setName(this.name);
+        ingredientEntity.setDescription(this.description);
         ingredientEntity.setAmount(this.amount);
+        ingredientEntity.setHeader(this.header);
 
-        Optional<MeasurementEntity> measurementOptional = measurementService.findMeasurementByName(this.measurementName);
-        MeasurementEntity measurement;
-        if (measurementOptional.isEmpty())
-            measurement = measurementService.save(new MeasurementEntity(this.measurementName));
-        else
-            measurement = measurementOptional.get();
+        MeasurementEntity measurement = measurementService.findMeasurementByName(this.measurementName);
+//        if (measurement == null)
+//            measurement = measurementService.save(new MeasurementEntity(this.measurementName));
         ingredientEntity.setMeasurement(measurement);
 
         return ingredientEntity;

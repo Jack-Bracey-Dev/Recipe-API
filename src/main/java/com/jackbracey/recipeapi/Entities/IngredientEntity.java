@@ -3,7 +3,6 @@ package com.jackbracey.recipeapi.Entities;
 import com.jackbracey.recipeapi.POJOs.Ingredient;
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,9 +13,9 @@ public class IngredientEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String name;
+    private String description;
 
-    private BigDecimal amount;
+    private Double amount;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "recipe_id", referencedColumnName = "id")
@@ -26,12 +25,26 @@ public class IngredientEntity {
     @JoinColumn(name = "measurement_id")
     private MeasurementEntity measurement;
 
-    public IngredientEntity(Integer id, String name, BigDecimal amount, RecipeEntity recipe, MeasurementEntity measurement) {
+    @Column(name = "header")
+    private String header;
+
+    @Column(name = "optional")
+    private Boolean optional;
+
+    public IngredientEntity(Integer id,
+                            String description,
+                            Double amount,
+                            RecipeEntity recipe,
+                            MeasurementEntity measurement,
+                            String header,
+                            Boolean optional) {
         this.id = id;
-        this.name = name;
+        this.description = description;
         this.amount = amount;
         this.recipe = recipe;
         this.measurement = measurement;
+        this.header = header;
+        this.optional = optional;
     }
 
     public IngredientEntity() {
@@ -45,7 +58,12 @@ public class IngredientEntity {
     }
 
     public Ingredient convertToPOJO() {
-        return new Ingredient(this.id, this.name, this.amount, this.measurement.convertToPOJO());
+        return new Ingredient(
+                this.id,
+                this.description,
+                this.amount,
+                this.measurement != null ? this.measurement.convertToPOJO() : null,
+                this.header);
     }
 
     public MeasurementEntity getMeasurement() {
@@ -72,20 +90,35 @@ public class IngredientEntity {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public BigDecimal getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 
+    public String getHeader() {
+        return header;
+    }
+
+    public void setHeader(String header) {
+        this.header = header;
+    }
+
+    public Boolean getOptional() {
+        return optional;
+    }
+
+    public void setOptional(Boolean optional) {
+        this.optional = optional;
+    }
 }

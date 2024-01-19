@@ -1,8 +1,10 @@
 package com.jackbracey.recipeapi.Entities;
 
+import com.jackbracey.recipeapi.POJOs.Enums.ScrapingSource;
 import com.jackbracey.recipeapi.POJOs.Recipe;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import org.hibernate.annotations.Type;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,13 +18,17 @@ public class RecipeEntity {
 
     private String name;
 
-    private String source;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "source")
+    private ScrapingSource source;
 
     private String url;
 
+    // Stored in minutes
     @Column(name = "prep_time")
     private Integer prepTime;
 
+    // Stored in minutes
     @Column(name = "cook_time")
     private Integer cookTime;
 
@@ -34,22 +40,25 @@ public class RecipeEntity {
 
     private Integer calories;
 
-    private Integer fat;
+    private Double fat;
 
-    private Integer saturates;
+    private Double saturates;
 
-    private Integer carbs;
+    private Double carbs;
 
-    private Integer sugars;
+    private Double sugars;
 
-    private Integer fibre;
+    private Double fibre;
 
-    private Integer protein;
+    private Double protein;
 
-    private Integer salt;
+    private Double salt;
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<IngredientEntity> ingredients = new ArrayList<>();
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<StepEntity> steps;
 
     public List<IngredientEntity> getIngredients() {
         return ingredients;
@@ -60,7 +69,7 @@ public class RecipeEntity {
     }
 
     public RecipeEntity(String name,
-                        @Nullable String source,
+                        @Nullable ScrapingSource source,
                         @Nullable String url,
                         @Nullable Integer prepTime,
                         @Nullable Integer cookTime,
@@ -68,13 +77,13 @@ public class RecipeEntity {
                         @Nullable Integer serves,
                         @Nullable String description,
                         @Nullable Integer calories,
-                        @Nullable Integer fat,
-                        @Nullable Integer saturates,
-                        @Nullable Integer carbs,
-                        @Nullable Integer sugars,
-                        @Nullable Integer fibre,
-                        @Nullable Integer protein,
-                        @Nullable Integer salt) {
+                        @Nullable Double fat,
+                        @Nullable Double saturates,
+                        @Nullable Double carbs,
+                        @Nullable Double sugars,
+                        @Nullable Double fibre,
+                        @Nullable Double protein,
+                        @Nullable Double salt) {
         this.name = name;
         this.source = source;
         this.url = url;
@@ -122,6 +131,7 @@ public class RecipeEntity {
                 this.fibre,
                 this.protein,
                 this.salt,
+                null,
                 null
         );
         recipe.setIngredients(IngredientEntity.convertToPOJOs(this.ingredients));
@@ -148,11 +158,11 @@ public class RecipeEntity {
         this.name = name;
     }
 
-    public String getSource() {
+    public ScrapingSource getSource() {
         return source;
     }
 
-    public void setSource(String source) {
+    public void setSource(ScrapingSource source) {
         this.source = source;
     }
 
@@ -212,59 +222,67 @@ public class RecipeEntity {
         this.calories = calories;
     }
 
-    public Integer getFat() {
+    public Double getFat() {
         return fat;
     }
 
-    public void setFat(Integer fat) {
+    public void setFat(Double fat) {
         this.fat = fat;
     }
 
-    public Integer getSaturates() {
+    public Double getSaturates() {
         return saturates;
     }
 
-    public void setSaturates(Integer saturates) {
+    public void setSaturates(Double saturates) {
         this.saturates = saturates;
     }
 
-    public Integer getCarbs() {
+    public Double getCarbs() {
         return carbs;
     }
 
-    public void setCarbs(Integer carbs) {
+    public void setCarbs(Double carbs) {
         this.carbs = carbs;
     }
 
-    public Integer getSugars() {
+    public Double getSugars() {
         return sugars;
     }
 
-    public void setSugars(Integer sugars) {
+    public void setSugars(Double sugars) {
         this.sugars = sugars;
     }
 
-    public Integer getFibre() {
+    public Double getFibre() {
         return fibre;
     }
 
-    public void setFibre(Integer fibre) {
+    public void setFibre(Double fibre) {
         this.fibre = fibre;
     }
 
-    public Integer getProtein() {
+    public Double getProtein() {
         return protein;
     }
 
-    public void setProtein(Integer protein) {
+    public void setProtein(Double protein) {
         this.protein = protein;
     }
 
-    public Integer getSalt() {
+    public Double getSalt() {
         return salt;
     }
 
-    public void setSalt(Integer salt) {
+    public void setSalt(Double salt) {
         this.salt = salt;
+    }
+
+    public List<StepEntity> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(List<StepEntity> steps) {
+        this.steps = steps;
     }
 }

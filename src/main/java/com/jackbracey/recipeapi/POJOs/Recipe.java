@@ -1,6 +1,7 @@
 package com.jackbracey.recipeapi.POJOs;
 
 import com.jackbracey.recipeapi.Entities.RecipeEntity;
+import com.jackbracey.recipeapi.POJOs.Enums.ScrapingSource;
 import com.jackbracey.recipeapi.Services.MeasurementService;
 import jakarta.annotation.Nullable;
 
@@ -13,12 +14,14 @@ public class Recipe {
 
     private String name;
 
-    private String source;
+    private ScrapingSource source;
 
     private String url;
 
+    // Stored in minutes
     private Integer prepTime;
 
+    // Stored in minutes
     private Integer cookTime;
 
     private String difficulty;
@@ -29,25 +32,27 @@ public class Recipe {
 
     private Integer calories;
 
-    private Integer fat;
+    private Double fat;
 
-    private Integer saturates;
+    private Double saturates;
 
-    private Integer carbs;
+    private Double carbs;
 
-    private Integer sugars;
+    private Double sugars;
 
-    private Integer fibre;
+    private Double fibre;
 
-    private Integer protein;
+    private Double protein;
 
-    private Integer salt;
+    private Double salt;
 
     private List<Ingredient> ingredients;
 
+    private List<Step> steps;
+
     public Recipe(@Nullable Integer id,
                   @Nullable String name,
-                  @Nullable String source,
+                  @Nullable ScrapingSource source,
                   @Nullable String url,
                   @Nullable Integer prepTime,
                   @Nullable Integer cookTime,
@@ -55,14 +60,15 @@ public class Recipe {
                   @Nullable Integer serves,
                   @Nullable String description,
                   @Nullable Integer calories,
-                  @Nullable Integer fat,
-                  @Nullable Integer saturates,
-                  @Nullable Integer carbs,
-                  @Nullable Integer sugars,
-                  @Nullable Integer fibre,
-                  @Nullable Integer protein,
-                  @Nullable Integer salt,
-                  @Nullable List<Ingredient> ingredients) {
+                  @Nullable Double fat,
+                  @Nullable Double saturates,
+                  @Nullable Double carbs,
+                  @Nullable Double sugars,
+                  @Nullable Double fibre,
+                  @Nullable Double protein,
+                  @Nullable Double salt,
+                  @Nullable List<Ingredient> ingredients,
+                  @Nullable List<Step> steps) {
         this.id = id;
         this.name = name;
         this.source = source;
@@ -81,6 +87,7 @@ public class Recipe {
         this.protein = protein;
         this.salt = salt;
         this.ingredients = ingredients;
+        this.steps = steps;
     }
 
     public static List<RecipeEntity> convertToEntities(List<Recipe> recipes,
@@ -112,6 +119,8 @@ public class Recipe {
         entity.setSalt(this.salt);
         if (this.ingredients.size() > 0)
             entity.setIngredients(Ingredient.convertToEntities(ingredients, measurementService));
+        if (this.steps.size() > 0)
+            entity.setSteps(Step.convertToEntities(steps, entity));
 
         return entity;
     }
@@ -135,11 +144,11 @@ public class Recipe {
         this.name = name;
     }
 
-    public String getSource() {
+    public ScrapingSource getSource() {
         return source;
     }
 
-    public void setSource(String source) {
+    public void setSource(ScrapingSource source) {
         this.source = source;
     }
 
@@ -199,59 +208,59 @@ public class Recipe {
         this.calories = calories;
     }
 
-    public Integer getFat() {
+    public Double getFat() {
         return fat;
     }
 
-    public void setFat(Integer fat) {
+    public void setFat(Double fat) {
         this.fat = fat;
     }
 
-    public Integer getSaturates() {
+    public Double getSaturates() {
         return saturates;
     }
 
-    public void setSaturates(Integer saturates) {
+    public void setSaturates(Double saturates) {
         this.saturates = saturates;
     }
 
-    public Integer getCarbs() {
+    public Double getCarbs() {
         return carbs;
     }
 
-    public void setCarbs(Integer carbs) {
+    public void setCarbs(Double carbs) {
         this.carbs = carbs;
     }
 
-    public Integer getSugars() {
+    public Double getSugars() {
         return sugars;
     }
 
-    public void setSugars(Integer sugars) {
+    public void setSugars(Double sugars) {
         this.sugars = sugars;
     }
 
-    public Integer getFibre() {
+    public Double getFibre() {
         return fibre;
     }
 
-    public void setFibre(Integer fibre) {
+    public void setFibre(Double fibre) {
         this.fibre = fibre;
     }
 
-    public Integer getProtein() {
+    public Double getProtein() {
         return protein;
     }
 
-    public void setProtein(Integer protein) {
+    public void setProtein(Double protein) {
         this.protein = protein;
     }
 
-    public Integer getSalt() {
+    public Double getSalt() {
         return salt;
     }
 
-    public void setSalt(Integer salt) {
+    public void setSalt(Double salt) {
         this.salt = salt;
     }
 
@@ -274,5 +283,13 @@ public class Recipe {
             this.ingredients = ingredients;
         else
             this.ingredients.addAll(ingredients);
+    }
+
+    public List<Step> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(List<Step> steps) {
+        this.steps = steps;
     }
 }
