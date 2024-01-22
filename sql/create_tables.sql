@@ -32,10 +32,12 @@ CREATE TABLE IF NOT EXISTS measurement (
 
 -- Creation of measurement conversions
 CREATE TABLE IF NOT EXISTS measurement_conversions (
-    beginning_metric varchar(100) NOT NULL,
-    target_metric varchar(100) NOT NULL,
+    beginning_metric INTEGER NOT NULL,
+    target_metric INTEGER NOT NULL,
     multiplier decimal NOT NULL,
-    PRIMARY KEY(beginning_metric, target_metric)
+    PRIMARY KEY(beginning_metric, target_metric),
+    FOREIGN KEY (beginning_metric) REFERENCES measurement (id),
+    FOREIGN KEY (target_metric) REFERENCES measurement (id)
 );
 
 -- Creation of ingredients table

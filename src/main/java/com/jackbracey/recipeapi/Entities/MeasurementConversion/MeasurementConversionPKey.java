@@ -4,28 +4,31 @@ import java.io.Serializable;
 
 public class MeasurementConversionPKey implements Serializable {
 
-    private String beginningMetric;
+    private Integer beginningMetric;
 
-    private String targetMetric;
+    private Integer targetMetric;
 
-    public MeasurementConversionPKey(String beginningMetric, String targetMetric) {
+    public MeasurementConversionPKey(Integer beginningMetric, Integer targetMetric) {
         this.beginningMetric = beginningMetric;
         this.targetMetric = targetMetric;
     }
 
-    public String getBeginningMetric() {
+    public MeasurementConversionPKey() {
+    }
+
+    public Integer getBeginningMetric() {
         return beginningMetric;
     }
 
-    public void setBeginningMetric(String beginningMetric) {
+    public void setBeginningMetric(Integer beginningMetric) {
         this.beginningMetric = beginningMetric;
     }
 
-    public String getTargetMetric() {
+    public Integer getTargetMetric() {
         return targetMetric;
     }
 
-    public void setTargetMetric(String targetMetric) {
+    public void setTargetMetric(Integer targetMetric) {
         this.targetMetric = targetMetric;
     }
 }

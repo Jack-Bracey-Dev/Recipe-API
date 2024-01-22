@@ -2,6 +2,7 @@ INSERT INTO public.permissions
 ("name")
 VALUES
 ('GET_MEASUREMENT'),
+('CREATE_MEASUREMENT'),
 ('GET_RECIPE'),
 ('CREATE_RECIPE'),
 ('EDIT_RECIPE'),
@@ -38,4 +39,5 @@ values
 (1, 12),
 (1, 13),
 (1, 14),
-(1, 15);
+(1, 15),
+(1, 16);

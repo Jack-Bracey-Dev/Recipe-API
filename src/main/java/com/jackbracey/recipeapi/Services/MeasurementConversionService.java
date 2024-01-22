@@ -17,4 +17,7 @@ public class MeasurementConversionService {
         return measurementConversionRepository.findAll();
     }
 
+    public MeasurementConversionEntity save(MeasurementConversionEntity entity) {
+        return measurementConversionRepository.save(entity);
+    }
 }

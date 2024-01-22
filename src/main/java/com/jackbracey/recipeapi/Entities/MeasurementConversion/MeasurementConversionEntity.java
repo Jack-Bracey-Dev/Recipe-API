@@ -1,9 +1,6 @@
 package com.jackbracey.recipeapi.Entities.MeasurementConversion;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
@@ -13,15 +10,15 @@ public class MeasurementConversionEntity {
 
     @Id
     @Column(name = "beginning_metric")
-    private String beginningMetric;
+    private Integer beginningMetric;
 
     @Id
     @Column(name = "target_metric")
-    private String targetMetric;
+    private Integer targetMetric;
 
-    private BigDecimal multiplier;
+    private Double multiplier;
 
-    public MeasurementConversionEntity(String beginningMetric, String targetMetric, BigDecimal multiplier) {
+    public MeasurementConversionEntity(Integer beginningMetric, Integer targetMetric, Double multiplier) {
         this.beginningMetric = beginningMetric;
         this.targetMetric = targetMetric;
         this.multiplier = multiplier;
@@ -30,27 +27,27 @@ public class MeasurementConversionEntity {
     public MeasurementConversionEntity() {
     }
 
-    public String getBeginningMetric() {
+    public Integer getBeginningMetric() {
         return beginningMetric;
     }
 
-    public void setBeginningMetric(String beginningMetric) {
+    public void setBeginningMetric(Integer beginningMetric) {
         this.beginningMetric = beginningMetric;
     }
 
-    public String getTargetMetric() {
+    public Integer getTargetMetric() {
         return targetMetric;
     }
 
-    public void setTargetMetric(String targetMetric) {
+    public void setTargetMetric(Integer targetMetric) {
         this.targetMetric = targetMetric;
     }
 
-    public BigDecimal getMultiplier() {
+    public Double getMultiplier() {
         return multiplier;
     }
 
-    public void setMultiplier(BigDecimal multiplier) {
+    public void setMultiplier(Double multiplier) {
         this.multiplier = multiplier;
     }
 }
