@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface MeasurementConversionRepository extends JpaRepository<MeasurementConversionEntity, MeasurementConversionPKey> {
+    MeasurementConversionEntity findByBeginningMetricAndTargetMetric(Integer beginningMetric, Integer targetMetric);
 }
