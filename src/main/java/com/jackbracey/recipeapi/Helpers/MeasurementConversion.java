@@ -50,6 +50,20 @@ public class MeasurementConversion {
         return RoundingHelper.RoundTo2DecimalPlaces(fromAmount / conversionEntity.getMultiplier());
     }
 
+    public Double convertMeasurement(Double fromAmount,
+                                     String fromMeasurement,
+                                     String toMeasurement) {
+        if (Strings.isBlank(fromMeasurement) || Strings.isBlank(toMeasurement)) {
+            log.error("Failed to convertMeasurement, null from or to measurement");
+            return null;
+        }
+
+        MeasurementEntity from = measurementService.findMeasurementByName(fromMeasurement);
+        MeasurementEntity to = measurementService.findMeasurementByName(toMeasurement);
+
+        return convertMeasurement(fromAmount, from, to);
+    }
+
     private String checkForNullValues(Double fromAmount, MeasurementEntity from, MeasurementEntity to) {
         StringBuilder builder = new StringBuilder();
         if (fromAmount == null || fromAmount.isNaN())

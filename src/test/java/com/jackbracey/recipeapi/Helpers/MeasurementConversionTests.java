@@ -23,7 +23,7 @@ public class MeasurementConversionTests {
 
     @BeforeAll
     public static void setup() {
-        measurementService = mock(MeasurementService.class);
+        //MeasurementConversionService setup
         measurementConversionService = mock(MeasurementConversionService.class);
 
         kg = new MeasurementEntity("kg", "", "");
@@ -35,18 +35,34 @@ public class MeasurementConversionTests {
         when(measurementConversionService.findMeasurementConversionByMeasurements(kg, lbs))
                 .thenReturn(new MeasurementConversionEntity(kg.getId(), lbs.getId(), 2.205));
 
+        // MeasurementService setup
+        measurementService = mock(MeasurementService.class);
+
+        when(measurementService.findMeasurementByName("kg")).thenReturn(kg);
+        when(measurementService.findMeasurementByName("lbs")).thenReturn(lbs);
+
         measurementConversion = new MeasurementConversion(
                 measurementService, measurementConversionService);
     }
 
     @Test
-    void shouldReturnCorrectConvertedValue_multiplication_1() {
+    void shouldReturnCorrectConvertedValue_providedMeasurementEntities_multiplication_1() {
         Assertions.assertEquals(264.6, measurementConversion.convertMeasurement(120.0, kg, lbs));
     }
 
     @Test
-    void shouldReturnCorrectConvertedValue_division_1() {
+    void shouldReturnCorrectConvertedValue_providedMeasurementEntities_division_1() {
         Assertions.assertEquals(4.54, measurementConversion.convertMeasurement(10.0, lbs, kg));
+    }
+
+    @Test
+    void shouldReturnCorrectConvertedValue_providedStringMeasurement_multiplication_1() {
+        Assertions.assertEquals(264.6, measurementConversion.convertMeasurement(120.0, "kg", "lbs"));
+    }
+
+    @Test
+    void shouldReturnCorrectConvertedValue_providedStringMeasurement_division_1() {
+        Assertions.assertEquals(4.54, measurementConversion.convertMeasurement(10.0, "lbs", "kg"));
     }
 
 }
