@@ -1,4 +1,4 @@
-package com.jackbracey.recipeapi.Auth;
+package com.jackbracey.recipeapi.RequestFilters.Auth;
 
 import com.jackbracey.recipeapi.Services.ApiKeyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +22,7 @@ public class SecurityConfig {
     @Autowired
     private ApiKeyService apiKeyService;
 
+    @SuppressWarnings("unused")
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)

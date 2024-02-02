@@ -1,4 +1,4 @@
-package com.jackbracey.recipeapi.Auth;
+package com.jackbracey.recipeapi.RequestFilters.Auth;
 
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
