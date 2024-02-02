@@ -7,7 +7,9 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
@@ -15,6 +17,9 @@ import org.springframework.web.filter.GenericFilterBean;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static com.jackbracey.recipeapi.Auth.AuthenticationService.AUTH_TOKEN_HEADER_NAME;
+
+@Slf4j
 public class AuthenticationFilter extends GenericFilterBean {
 
     private final ApiKeyService apiKeyService;
@@ -31,14 +36,8 @@ public class AuthenticationFilter extends GenericFilterBean {
             Authentication authentication = AuthenticationService.getAuthentication((HttpServletRequest) request,
                     apiKeyService);
             SecurityContextHolder.getContext().setAuthentication(authentication);
-        } catch (Exception exp) {
-            HttpServletResponse httpResponse = (HttpServletResponse) response;
-            httpResponse.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-            httpResponse.setContentType(MediaType.APPLICATION_JSON_VALUE);
-            PrintWriter writer = httpResponse.getWriter();
-            writer.print(exp.getMessage());
-            writer.flush();
-            writer.close();
+        } catch (BadCredentialsException badCredentialsException) {
+            log.info("Failed to authenticate API Key: " + (((HttpServletRequest) request).getHeader(AUTH_TOKEN_HEADER_NAME)));
         }
 
         filterChain.doFilter(request, response);
