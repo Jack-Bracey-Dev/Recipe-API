@@ -3,17 +3,28 @@ package com.jackbracey.recipeapi.POJOs;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public enum GenericKeyType {
 
-    TRIAL_USER(List.of(
+    FREE_USER(List.of(
             new Permission("GET_RECIPE"),
             new Permission("GET_MEASUREMENT")
-    ), 500L, null),
+    ), 300L, null),
 
-    USER(List.of(
+    USER_T1(List.of(
             new Permission("GET_RECIPE"),
             new Permission("GET_MEASUREMENT")
-    ),null, null),
+    ),50000L, null),
+
+    USER_T2(List.of(
+            new Permission("GET_RECIPE"),
+            new Permission("GET_MEASUREMENT")
+    ),400000L, null),
+
+    USER_T3(List.of(
+            new Permission("GET_RECIPE"),
+            new Permission("GET_MEASUREMENT")
+    ),500000L, null),
 
     ADMIN(List.of(
             new Permission("CREATE_RECIPE"),
@@ -26,7 +37,7 @@ public enum GenericKeyType {
             new Permission("GET_API_KEY"),
             new Permission("CREATE_API_KEY"),
             new Permission("REMOVE_API_KEY")
-    ), null, USER);
+    ), null, USER_T3);
 
     private final List<Permission> defaultPermissions;
 

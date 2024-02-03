@@ -1,6 +1,7 @@
 package com.jackbracey.recipeapi.RequestFilters.RequestCount;
 
 import com.jackbracey.recipeapi.Entities.ApiKeyEntity;
+import com.jackbracey.recipeapi.POJOs.GenericKeyType;
 import com.jackbracey.recipeapi.Services.ApiKeyService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -37,7 +38,8 @@ public class RequestCountCheckFilter implements HandlerInterceptor {
         if (entity.getType().equalsIgnoreCase("ADMIN"))
             return true;
 
-        if (entity.getRequests() >= 1000) {
+        GenericKeyType type = GenericKeyType.valueOf(entity.getType());
+        if (type.getAllowedRequests() != null && entity.getRequests() >= type.getAllowedRequests()) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN, "You've used all your requests, upgrade your package for more.");
             return false;
         }
