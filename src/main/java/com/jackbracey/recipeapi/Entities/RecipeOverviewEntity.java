@@ -24,8 +24,10 @@ public class RecipeOverviewEntity {
 
     private Boolean scraped;
 
+    private Boolean ignore;
+
     public RecipeOverviewEntity(Integer id, String name, String url, String postFormat, String externalId,
-                                String imageUrl, Boolean scraped) {
+                                String imageUrl, Boolean scraped, Boolean ignore) {
         this.id = id;
         this.name = name;
         this.url = url;
@@ -33,6 +35,7 @@ public class RecipeOverviewEntity {
         this.externalId = externalId;
         this.imageUrl = imageUrl;
         this.scraped = scraped;
+        this.ignore = ignore;
     }
 
     public RecipeOverviewEntity() {
@@ -104,5 +107,13 @@ public class RecipeOverviewEntity {
 
     public void setScraped(Boolean scraped) {
         this.scraped = scraped;
+    }
+
+    public Boolean getIgnore() {
+        return ignore;
+    }
+
+    public void setIgnore(Boolean ignore) {
+        this.ignore = ignore;
     }
 }
