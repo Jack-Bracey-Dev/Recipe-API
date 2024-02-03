@@ -24,7 +24,8 @@ public class FeatureFlagService {
         return featureFlagRepository.save(entity);
     }
 
-    public List<FeatureFlagEntity> saveAll(List<FeatureFlagEntity> entities) {
+    public List<FeatureFlagEntity> save(List<FeatureFlagEntity> entities) {
+        entities.forEach(this::removeFromCache);
         return featureFlagRepository.saveAll(entities);
     }
 
