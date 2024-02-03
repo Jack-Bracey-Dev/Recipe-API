@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS recipe_overview (
     source_id varchar(100),
     misc_details varchar(300),
     scraped BOOLEAN,
-    ignore BOOLEAN
+    ignore BOOLEAN DEFAULT false
 );
 
 -- Creation of scraping info table
