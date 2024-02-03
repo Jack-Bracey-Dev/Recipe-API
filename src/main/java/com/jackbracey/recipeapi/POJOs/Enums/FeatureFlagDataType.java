@@ -1,4 +1,4 @@
-package com.jackbracey.recipeapi.POJOs;
+package com.jackbracey.recipeapi.POJOs.Enums;
 
 import java.util.List;
 

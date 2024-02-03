@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS api_key_permissions (
 CREATE TABLE IF NOT EXISTS feature_flag (
     name varchar(200) PRIMARY KEY,
     value varchar(200) NOT NULL,
-    data_type smallint NOT NULL
+    data_type varchar(100) NOT NULL
 );
 
 -- Creation of recipe overview table
@@ -95,7 +95,8 @@ CREATE TABLE IF NOT EXISTS recipe_overview (
     source varchar(100),
     source_id varchar(100),
     misc_details varchar(300),
-    scraped BOOLEAN
+    scraped BOOLEAN,
+    ignore BOOLEAN
 );
 
 -- Creation of scraping info table

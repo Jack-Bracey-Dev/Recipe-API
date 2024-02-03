@@ -1,10 +1,7 @@
 package com.jackbracey.recipeapi.Entities;
 
-import com.jackbracey.recipeapi.POJOs.FeatureFlagDataType;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import com.jackbracey.recipeapi.POJOs.Enums.FeatureFlagDataType;
+import jakarta.persistence.*;
 
 @Entity(name = "feature_flag")
 public class FeatureFlagEntity {
@@ -17,7 +14,7 @@ public class FeatureFlagEntity {
     private String value;
 
     @Column(name = "data_type")
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private FeatureFlagDataType dataType;
 
     public FeatureFlagEntity(String name, String value, FeatureFlagDataType dataType) {

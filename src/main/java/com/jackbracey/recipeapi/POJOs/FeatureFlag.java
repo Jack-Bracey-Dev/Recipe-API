@@ -2,6 +2,7 @@ package com.jackbracey.recipeapi.POJOs;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.jackbracey.recipeapi.Entities.FeatureFlagEntity;
+import com.jackbracey.recipeapi.POJOs.Enums.FeatureFlagDataType;
 
 import java.io.Serializable;
 

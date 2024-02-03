@@ -1,4 +1,4 @@
-package com.jackbracey.recipeapi.Helpers;
+package com.jackbracey.recipeapi.POJOs.Enums;
 
 public class FeatureFlags {
 

@@ -2,7 +2,7 @@ package com.jackbracey.recipeapi.Services;
 
 import com.jackbracey.recipeapi.Entities.ApiKeyEntity;
 import com.jackbracey.recipeapi.Entities.Permissions.ApiKeyPermissionEntity;
-import com.jackbracey.recipeapi.POJOs.GenericKeyType;
+import com.jackbracey.recipeapi.POJOs.Enums.GenericKeyType;
 import com.jackbracey.recipeapi.Repositories.ApiKeyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -3,7 +3,7 @@ package com.jackbracey.recipeapi.Entities;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.jackbracey.recipeapi.Entities.Permissions.ApiKeyPermissionEntity;
 import com.jackbracey.recipeapi.Entities.Permissions.PermissionEntity;
-import com.jackbracey.recipeapi.POJOs.GenericKeyType;
+import com.jackbracey.recipeapi.POJOs.Enums.GenericKeyType;
 import com.jackbracey.recipeapi.POJOs.Permission;
 import com.jackbracey.recipeapi.Services.ApiKeyPermissionService;
 import com.jackbracey.recipeapi.Services.PermissionService;

@@ -1,7 +1,7 @@
 package com.jackbracey.recipeapi.Controllers;
 
 import com.jackbracey.recipeapi.Entities.RecipeEntity;
-import com.jackbracey.recipeapi.Helpers.FeatureFlags;
+import com.jackbracey.recipeapi.POJOs.Enums.FeatureFlags;
 import com.jackbracey.recipeapi.Helpers.Response;
 import com.jackbracey.recipeapi.POJOs.Recipe;
 import com.jackbracey.recipeapi.POJOs.RecipeFilter;

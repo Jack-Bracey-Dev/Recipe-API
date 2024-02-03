@@ -1,7 +1,7 @@
 package com.jackbracey.recipeapi.RequestFilters.RequestCount;
 
 import com.jackbracey.recipeapi.Entities.ApiKeyEntity;
-import com.jackbracey.recipeapi.POJOs.GenericKeyType;
+import com.jackbracey.recipeapi.POJOs.Enums.GenericKeyType;
 import com.jackbracey.recipeapi.Services.ApiKeyService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

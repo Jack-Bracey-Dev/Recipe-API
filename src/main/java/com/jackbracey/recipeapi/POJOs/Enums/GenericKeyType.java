@@ -1,4 +1,6 @@
-package com.jackbracey.recipeapi.POJOs;
+package com.jackbracey.recipeapi.POJOs.Enums;
+
+import com.jackbracey.recipeapi.POJOs.Permission;
 
 import java.util.ArrayList;
 import java.util.List;
