@@ -32,6 +32,9 @@ public class RecipeEntity {
     @Column(name = "cook_time")
     private Integer cookTime;
 
+    @Column(name = "extra_time")
+    private Integer extraTime;
+
     private String difficulty;
 
     private Integer serves;
@@ -73,6 +76,7 @@ public class RecipeEntity {
                         @Nullable String url,
                         @Nullable Integer prepTime,
                         @Nullable Integer cookTime,
+                        @Nullable Integer extraTime,
                         @Nullable String difficulty,
                         @Nullable Integer serves,
                         @Nullable String description,
@@ -89,6 +93,7 @@ public class RecipeEntity {
         this.url = url;
         this.prepTime = prepTime;
         this.cookTime = cookTime;
+        this.extraTime = extraTime;
         this.difficulty = difficulty;
         this.serves = serves;
         this.description = description;
@@ -120,6 +125,7 @@ public class RecipeEntity {
                 this.url,
                 this.prepTime,
                 this.cookTime,
+                this.extraTime,
                 this.difficulty,
                 this.serves,
                 this.description,
@@ -188,6 +194,14 @@ public class RecipeEntity {
 
     public void setCookTime(Integer cookTime) {
         this.cookTime = cookTime;
+    }
+
+    public Integer getExtraTime() {
+        return extraTime;
+    }
+
+    public void setExtraTime(Integer extraTime) {
+        this.extraTime = extraTime;
     }
 
     public String getDifficulty() {

@@ -24,6 +24,9 @@ public class Recipe {
     // Stored in minutes
     private Integer cookTime;
 
+    // Stored in minutes
+    private Integer extraTime;
+
     private String difficulty;
 
     private Integer serves;
@@ -56,6 +59,7 @@ public class Recipe {
                   @Nullable String url,
                   @Nullable Integer prepTime,
                   @Nullable Integer cookTime,
+                  @Nullable Integer extraTime,
                   @Nullable String difficulty,
                   @Nullable Integer serves,
                   @Nullable String description,
@@ -75,6 +79,7 @@ public class Recipe {
         this.url = url;
         this.prepTime = prepTime;
         this.cookTime = cookTime;
+        this.extraTime = extraTime;
         this.difficulty = difficulty;
         this.serves = serves;
         this.description = description;
@@ -106,6 +111,7 @@ public class Recipe {
         entity.setUrl(this.url);
         entity.setPrepTime(this.prepTime);
         entity.setCookTime(this.cookTime);
+        entity.setExtraTime(this.extraTime);
         entity.setDifficulty(this.difficulty);
         entity.setServes(this.serves);
         entity.setDescription(this.description);
@@ -174,6 +180,14 @@ public class Recipe {
 
     public void setCookTime(Integer cookTime) {
         this.cookTime = cookTime;
+    }
+
+    public Integer getExtraTime() {
+        return extraTime;
+    }
+
+    public void setExtraTime(Integer extraTime) {
+        this.extraTime = extraTime;
     }
 
     public String getDifficulty() {

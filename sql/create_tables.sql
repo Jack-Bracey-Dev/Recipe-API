@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS recipe (
   url text,
   prep_time INT,
   cook_time INT,
+  extra_time INT,
   difficulty varchar(20),
   serves INT,
   description text,
